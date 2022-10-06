@@ -3,15 +3,12 @@ package br.com.uniamerica.transportadora.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "td_despesa", schema = "public")
+@Table(name = "td_despesa", schema = "transportadora")
 public class Despesa extends AbstractEntity {
 
     @ManyToOne
@@ -22,19 +19,22 @@ public class Despesa extends AbstractEntity {
     @Column(name = "valor", nullable = false, precision = 5, scale = 3)
     private BigDecimal valor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_motorista", nullable = false)
     private Usuario motorista;
 
     @Getter @Setter
     @Column(name = "data", length = 25, nullable = false)
     private LocalDateTime data;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_aprovador", nullable = false)
     private Usuario aprovador;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_frete", nullable = false)
     private Frete frete;
 }

@@ -8,15 +8,16 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "td_caminhoes", schema = "public")
+@Table(name = "td_caminhoes", schema = "transportadora")
 public class Caminhao extends AbstractEntity {
 
     @Getter @Setter
     @Column(name = "placa", length = 25, nullable = false)
     private String placa;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_modelo", nullable = false)
     private Modelo modelo;
 
     @Getter @Setter

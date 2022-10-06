@@ -7,27 +7,32 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "td_frete", schema = "public")
+@Table(name = "td_frete", schema = "transportadora")
 public class Frete extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_produto", nullable = false)
     private Produto produto;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_cidade_origem", nullable = false)
     private Cidade cidadeOrigem;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_cidade_destino", nullable = false)
     private Cidade cidadeDestino;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_motorista", nullable = false)
     private Usuario motorista;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
+    @JoinColumn(name = "id_caminhao", nullable = false)
     private Caminhao caminhao;
 
     @Getter @Setter

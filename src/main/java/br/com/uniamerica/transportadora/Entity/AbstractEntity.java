@@ -19,7 +19,7 @@ public abstract class AbstractEntity {
     private LocalDateTime cadastrar;
 
     @Getter @Setter
-    @Column(name = "alterar", length = 25, nullable = false, unique = true)
+    @Column(name = "alterar", length = 25, nullable = false)
     private LocalDateTime alterar;
 
     @Getter @Setter
@@ -27,13 +27,13 @@ public abstract class AbstractEntity {
     private boolean ativo;
 
     @PrePersist
-    public void dataCadastrar(){
+    public void dataCadastrar() {
         this.setCadastrar(LocalDateTime.now());
         this.setAtivo(true);
     }
 
     @PreUpdate
-    public void dataAlterar(){
+    public void dataAlterar() {
         this.setAlterar(LocalDateTime.now());
     }
 }
