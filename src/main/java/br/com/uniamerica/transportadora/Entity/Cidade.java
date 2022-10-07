@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "td_cidade", schema = "transportadora",
+@Table(name = "tb_cidade", schema = "transportadora",
         uniqueConstraints = {
             @UniqueConstraint(
                     columnNames = {"nome", "id_estado"}

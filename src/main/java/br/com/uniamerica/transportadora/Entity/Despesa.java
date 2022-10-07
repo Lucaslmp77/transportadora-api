@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "td_despesa", schema = "transportadora")
+@Table(name = "tb_despesa", schema = "transportadora")
 public class Despesa extends AbstractEntity {
 
     @ManyToOne
@@ -37,4 +37,8 @@ public class Despesa extends AbstractEntity {
     @Getter @Setter
     @JoinColumn(name = "id_frete", nullable = false)
     private Frete frete;
+
+    @Getter @Setter
+    @Column(name = "aprovada", nullable = false)
+    private Boolean aprovada;
 }

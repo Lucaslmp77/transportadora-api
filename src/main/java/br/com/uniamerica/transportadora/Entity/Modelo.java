@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "td_modelo", schema = "transportadora")
+@Table(name = "tb_modelo", schema = "transportadora")
 public class Modelo extends AbstractEntity{
 
     @Getter @Setter

@@ -5,9 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "td_frete", schema = "transportadora")
+@Table(name = "tb_frete", schema = "transportadora")
 public class Frete extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -71,6 +72,14 @@ public class Frete extends AbstractEntity {
     @Getter @Setter
     @Column(name = "preco_tonelada", nullable = false, precision = 5, scale = 3)
     private BigDecimal precoTonelada;
+
+    @Getter @Setter
+    @Column(name = "data_inicio", length = 25, nullable = false)
+    private LocalDateTime dataInicio;
+
+    @Getter @Setter
+    @Column(name = "data_fim", length = 25, nullable = false)
+    private LocalDateTime dataFim;
 
     @Getter @Setter
     @Column(name = "observacao", length = 255, nullable = false)
