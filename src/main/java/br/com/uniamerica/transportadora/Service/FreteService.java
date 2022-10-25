@@ -37,14 +37,4 @@ public class FreteService {
         }
     }
 
-    @Transactional
-    public void delete(Long id) {
-        var frete = this.freteRepository.findById(id);
-        if(id == frete.get().getId()) {
-            this.freteRepository.delete(frete.get());
-        } else {
-            throw new RuntimeException();
-        }
-    }
-
 }

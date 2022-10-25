@@ -28,23 +28,5 @@ public class HistoricoFreteService {
         return this.historicoFreteRepository.findById(id);
     }
 
-    @Transactional
-    public void update(Long id, HistoricoFrete historicoFrete) {
-        if(id == historicoFrete.getId()) {
-            this.historicoFreteRepository.save(historicoFrete);
-        } else {
-            throw new RuntimeException();
-        }
-    }
-
-    @Transactional
-    public void delete(Long id) {
-        var historicoFrete = this.historicoFreteRepository.findById(id);
-        if(id == historicoFrete.get().getId()) {
-            this.historicoFreteRepository.delete(historicoFrete.get());
-        } else {
-            throw new RuntimeException();
-        }
-    }
 
 }

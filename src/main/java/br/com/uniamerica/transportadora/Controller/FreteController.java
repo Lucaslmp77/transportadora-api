@@ -55,16 +55,4 @@ public class FreteController {
         }
     }
 
-    @DeleteMapping("/{idFrete}")
-    public ResponseEntity<?> delete(
-            @PathVariable Long idFrete
-    ){
-        try{
-            this.freteService.delete(idFrete);
-            return ResponseEntity.ok().body("Frete deletado com sucesso!");
-        }catch (RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
 }

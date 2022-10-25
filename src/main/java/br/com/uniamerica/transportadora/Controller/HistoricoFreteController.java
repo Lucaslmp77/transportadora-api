@@ -42,29 +42,4 @@ public class HistoricoFreteController {
         return ResponseEntity.ok().body(this.historicoFreteService.findById(idHistoricoFrete).get());
     }
 
-    @PutMapping("/{idHistoricoFrete}")
-    public ResponseEntity<?> update(
-            @PathVariable Long idHistoricoFrete,
-            @RequestBody HistoricoFrete historicoFrete
-    ){
-        try{
-            this.historicoFreteService.update(idHistoricoFrete, historicoFrete);
-            return ResponseEntity.ok().body("Histórico do frete atualizado com sucesso!");
-        }catch (RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
-    @DeleteMapping("/{idHistoricoFrete}")
-    public ResponseEntity<?> delete(
-            @PathVariable Long idHistoricoFrete
-    ){
-        try{
-            this.historicoFreteService.delete(idHistoricoFrete);
-            return ResponseEntity.ok().body("Histórico do frete deletado com sucesso!");
-        }catch (RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
 }
