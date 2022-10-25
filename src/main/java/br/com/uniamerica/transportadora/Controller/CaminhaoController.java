@@ -3,11 +3,11 @@ package br.com.uniamerica.transportadora.Controller;
 import br.com.uniamerica.transportadora.Entity.Caminhao;
 import br.com.uniamerica.transportadora.Service.CaminhaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/api/caminhao")
@@ -29,10 +29,10 @@ public class CaminhaoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Caminhao>> listByAllPage(
-            Pageable pageable
+    public ResponseEntity<List<Caminhao>> listAll(
+
     ){
-        return ResponseEntity.ok().body(this.caminhaoService.listAll(pageable));
+        return ResponseEntity.ok().body(this.caminhaoService.listAll());
     }
 
     @GetMapping("/{idCaminhao}")
@@ -49,7 +49,7 @@ public class CaminhaoController {
     ){
         try{
             this.caminhaoService.update(idCaminhao, caminhao);
-            return ResponseEntity.ok().body("Caminhão Atualizado com sucesso!");
+            return ResponseEntity.ok().body("Caminhão atualizado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -57,11 +57,10 @@ public class CaminhaoController {
 
     @DeleteMapping("/{idCaminhao}")
     public ResponseEntity<?> delete(
-            @PathVariable Long idCaminhao,
-            @RequestBody Caminhao caminhao
+            @PathVariable Long idCaminhao
     ){
         try{
-            this.caminhaoService.delete(idCaminhao, caminhao);
+            this.caminhaoService.delete(idCaminhao);
             return ResponseEntity.ok().body("Caminhão deletado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

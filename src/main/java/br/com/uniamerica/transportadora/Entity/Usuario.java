@@ -6,7 +6,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 

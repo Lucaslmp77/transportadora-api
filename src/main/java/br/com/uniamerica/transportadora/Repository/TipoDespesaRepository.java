@@ -1,6 +1,5 @@
 package br.com.uniamerica.transportadora.Repository;
 
-import br.com.uniamerica.transportadora.Entity.Marca;
 import br.com.uniamerica.transportadora.Entity.TipoDespesa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
