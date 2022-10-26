@@ -36,10 +36,10 @@ public class CidadeController {
     }
 
     @GetMapping("/{idCidade}")
-    public ResponseEntity<Cidade> findById(
+    public ResponseEntity<?> findById(
             @PathVariable("idCidade") Long idCidade
     ){
-        return ResponseEntity.ok().body(this.cidadeService.findById(idCidade).get());
+        return ResponseEntity.ok().body(this.cidadeService.findById(idCidade));
     }
 
     @PutMapping("/{idCidade}")
@@ -57,10 +57,11 @@ public class CidadeController {
 
     @DeleteMapping("/{idCidade}")
     public ResponseEntity<?> delete(
-            @PathVariable Long idCidade
+            @PathVariable Long idCidade,
+            @RequestBody Cidade cidade
     ){
         try{
-            this.cidadeService.delete(idCidade);
+            this.cidadeService.delete(idCidade, cidade);
             return ResponseEntity.ok().body("Cidade deletada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

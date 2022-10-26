@@ -38,10 +38,9 @@ public class EstadoService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var estado = this.estadoRepository.findById(id);
-        if(id == estado.get().getId()) {
-            this.estadoRepository.delete(estado.get());
+    public void delete(Long id, Estado estado) {
+        if(id == estado.getId()) {
+            this.estadoRepository.delete(estado);
         } else {
             throw new RuntimeException();
         }

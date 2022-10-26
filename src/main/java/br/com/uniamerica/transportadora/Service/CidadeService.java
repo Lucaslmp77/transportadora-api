@@ -38,10 +38,9 @@ public class CidadeService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var cidade = this.cidadeRepository.findById(id);
-        if(id == cidade.get().getId()) {
-            this.cidadeRepository.delete(cidade.get());
+    public void delete(Long id, Cidade cidade) {
+        if(id == cidade.getId()) {
+            this.cidadeRepository.delete(cidade);
         } else {
             throw new RuntimeException();
         }

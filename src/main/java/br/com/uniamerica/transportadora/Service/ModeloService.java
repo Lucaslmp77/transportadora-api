@@ -38,10 +38,9 @@ public class ModeloService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var modelo = this.modeloRepository.findById(id);
-        if(id == modelo.get().getId()) {
-            this.modeloRepository.delete(modelo.get());
+    public void delete(Long id, Modelo modelo) {
+        if(id == modelo.getId()) {
+            this.modeloRepository.delete(modelo);
         } else {
             throw new RuntimeException();
         }

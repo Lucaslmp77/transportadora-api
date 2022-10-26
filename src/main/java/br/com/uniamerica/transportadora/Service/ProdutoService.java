@@ -38,10 +38,9 @@ public class ProdutoService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var produto = this.produtoRepository.findById(id);
-        if(id == produto.get().getId()) {
-            this.produtoRepository.delete(produto.get());
+    public void delete(Long id, Produto produto) {
+        if(id == produto.getId()) {
+            this.produtoRepository.delete(produto);
         } else {
             throw new RuntimeException();
         }

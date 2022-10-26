@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +38,9 @@ public class CaminhaoService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var caminhao = this.caminhaoRepository.findById(id);
-        if(id == caminhao.get().getId()) {
-            this.caminhaoRepository.delete(caminhao.get());
+    public void delete(Long id, Caminhao caminhao) {
+        if(id == caminhao.getId()) {
+            this.caminhaoRepository.delete(caminhao);
         } else {
             throw new RuntimeException();
         }

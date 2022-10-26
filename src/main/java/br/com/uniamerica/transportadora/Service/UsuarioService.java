@@ -38,10 +38,9 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var usuario = this.usuarioRepository.findById(id);
-        if(id == usuario.get().getId()) {
-            this.usuarioRepository.delete(usuario.get());
+    public void delete(Long id, Usuario usuario) {
+        if(id == usuario.getId()) {
+            this.usuarioRepository.delete(usuario);
         } else {
             throw new RuntimeException();
         }

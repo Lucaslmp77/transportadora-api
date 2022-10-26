@@ -36,10 +36,10 @@ public class FreteController {
     }
 
     @GetMapping("/{idFrete}")
-    public ResponseEntity<Frete> findById(
+    public ResponseEntity<?> findById(
             @PathVariable("idFrete") Long idFrete
     ){
-        return ResponseEntity.ok().body(this.freteService.findById(idFrete).get());
+        return ResponseEntity.ok().body(this.freteService.findById(idFrete));
     }
 
     @PutMapping("/{idFrete}")

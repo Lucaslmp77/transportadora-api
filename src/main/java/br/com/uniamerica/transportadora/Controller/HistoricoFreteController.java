@@ -36,10 +36,10 @@ public class HistoricoFreteController {
     }
 
     @GetMapping("/{idHistoricoFrete}")
-    public ResponseEntity<HistoricoFrete> findById(
+    public ResponseEntity<?> findById(
             @PathVariable("idHistoricoFrete") Long idHistoricoFrete
     ){
-        return ResponseEntity.ok().body(this.historicoFreteService.findById(idHistoricoFrete).get());
+        return ResponseEntity.ok().body(this.historicoFreteService.findById(idHistoricoFrete));
     }
 
 }

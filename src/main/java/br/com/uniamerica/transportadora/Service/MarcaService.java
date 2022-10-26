@@ -38,10 +38,9 @@ public class MarcaService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var marca = this.marcaRepository.findById(id);
-        if(id == marca.get().getId()) {
-            this.marcaRepository.delete(marca.get());
+    public void delete(Long id, Marca marca) {
+        if(id == marca.getId()) {
+            this.marcaRepository.delete(marca);
         } else {
             throw new RuntimeException();
         }

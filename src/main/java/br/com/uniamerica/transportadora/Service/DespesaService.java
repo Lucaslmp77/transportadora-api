@@ -38,10 +38,9 @@ public class DespesaService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        var despesa = this.despesaRepository.findById(id);
-        if(id == despesa.get().getId()) {
-            this.despesaRepository.delete(despesa.get());
+    public void delete(Long id, Despesa despesa) {
+        if(id == despesa.getId()) {
+            this.despesaRepository.delete(despesa);
         } else {
             throw new RuntimeException();
         }

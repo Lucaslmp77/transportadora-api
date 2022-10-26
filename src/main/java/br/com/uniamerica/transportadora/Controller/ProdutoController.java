@@ -36,10 +36,10 @@ public class ProdutoController {
     }
 
     @GetMapping("/{idProduto}")
-    public ResponseEntity<Produto> findById(
+    public ResponseEntity<?> findById(
             @PathVariable("idProduto") Long idProduto
     ){
-        return ResponseEntity.ok().body(this.produtoService.findById(idProduto).get());
+        return ResponseEntity.ok().body(this.produtoService.findById(idProduto));
     }
 
     @PutMapping("/{idProduto}")
@@ -57,10 +57,11 @@ public class ProdutoController {
 
     @DeleteMapping("/{idProduto}")
     public ResponseEntity<?> delete(
-            @PathVariable Long idProduto
+            @PathVariable Long idProduto,
+            @RequestBody Produto produto
     ){
         try{
-            this.produtoService.delete(idProduto);
+            this.produtoService.delete(idProduto, produto);
             return ResponseEntity.ok().body("Produto deletado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

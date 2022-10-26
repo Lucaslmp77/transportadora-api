@@ -36,10 +36,10 @@ public class DespesaController {
     }
 
     @GetMapping("/{idDespesa}")
-    public ResponseEntity<Despesa> findById(
+    public ResponseEntity<?> findById(
             @PathVariable("idDespesa") Long idDespesa
     ){
-        return ResponseEntity.ok().body(this.despesaService.findById(idDespesa).get());
+        return ResponseEntity.ok().body(this.despesaService.findById(idDespesa));
     }
 
     @PutMapping("/{idDespesa}")
@@ -57,10 +57,11 @@ public class DespesaController {
 
     @DeleteMapping("/{idDespesa}")
     public ResponseEntity<?> delete(
-            @PathVariable Long idDespesa
+            @PathVariable Long idDespesa,
+            @RequestBody Despesa despesa
     ){
         try{
-            this.despesaService.delete(idDespesa);
+            this.despesaService.delete(idDespesa, despesa);
             return ResponseEntity.ok().body("Despesa deletada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
