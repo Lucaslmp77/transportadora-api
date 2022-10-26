@@ -24,8 +24,8 @@ public class FreteService {
         return this.freteRepository.findAll();
     }
 
-    public Optional<Frete> findById(Long id) {
-        return this.freteRepository.findById(id);
+    public Frete findById(Long id) {
+        return this.freteRepository.findById(id).orElse(new Frete());
     }
 
     @Transactional

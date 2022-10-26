@@ -24,8 +24,8 @@ public class TipoDespesaService {
         return this.tipoDespesaRepository.findAll();
     }
 
-    public Optional<TipoDespesa> findById(Long id) {
-        return this.tipoDespesaRepository.findById(id);
+    public TipoDespesa findById(Long id) {
+        return this.tipoDespesaRepository.findById(id).orElse(new TipoDespesa());
     }
 
     @Transactional

@@ -24,8 +24,8 @@ public class UsuarioService {
         return this.usuarioRepository.findAll();
     }
 
-    public Optional<Usuario> findById(Long id) {
-        return this.usuarioRepository.findById(id);
+    public Usuario findById(Long id) {
+        return this.usuarioRepository.findById(id).orElse(new Usuario());
     }
 
     @Transactional

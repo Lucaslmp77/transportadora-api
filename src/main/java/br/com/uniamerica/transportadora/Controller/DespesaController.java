@@ -36,7 +36,7 @@ public class DespesaController {
     }
 
     @GetMapping("/{idDespesa}")
-    public ResponseEntity<?> findById(
+    public ResponseEntity<Despesa> findById(
             @PathVariable("idDespesa") Long idDespesa
     ){
         return ResponseEntity.ok().body(this.despesaService.findById(idDespesa));

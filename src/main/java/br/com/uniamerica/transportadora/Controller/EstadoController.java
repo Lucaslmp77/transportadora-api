@@ -36,7 +36,7 @@ public class EstadoController {
     }
 
     @GetMapping("/{idEstado}")
-    public ResponseEntity<?> findById(
+    public ResponseEntity<Estado> findById(
             @PathVariable("idEstado") Long idEstado
     ){
         return ResponseEntity.ok().body(this.estadoService.findById(idEstado));

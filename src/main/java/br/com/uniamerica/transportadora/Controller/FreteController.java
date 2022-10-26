@@ -36,7 +36,7 @@ public class FreteController {
     }
 
     @GetMapping("/{idFrete}")
-    public ResponseEntity<?> findById(
+    public ResponseEntity<Frete> findById(
             @PathVariable("idFrete") Long idFrete
     ){
         return ResponseEntity.ok().body(this.freteService.findById(idFrete));

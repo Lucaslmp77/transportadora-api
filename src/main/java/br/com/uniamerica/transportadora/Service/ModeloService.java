@@ -24,8 +24,8 @@ public class ModeloService {
         return this.modeloRepository.findAll();
     }
 
-    public Optional<Modelo> findById(Long id) {
-        return this.modeloRepository.findById(id);
+    public Modelo findById(Long id) {
+        return this.modeloRepository.findById(id).orElse(new Modelo());
     }
 
     @Transactional

@@ -24,8 +24,8 @@ public class EstadoService {
         return this.estadoRepository.findAll();
     }
 
-    public Optional<Estado> findById(Long id) {
-        return this.estadoRepository.findById(id);
+    public Estado findById(Long id) {
+        return this.estadoRepository.findById(id).orElse(new Estado());
     }
 
     @Transactional

@@ -24,8 +24,8 @@ public class ProdutoService {
         return this.produtoRepository.findAll();
     }
 
-    public Optional<Produto> findById(Long id) {
-        return this.produtoRepository.findById(id);
+    public Produto findById(Long id) {
+        return this.produtoRepository.findById(id).orElse(new Produto());
     }
 
     @Transactional

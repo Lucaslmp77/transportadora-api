@@ -24,8 +24,8 @@ public class CidadeService {
         return this.cidadeRepository.findAll();
     }
 
-    public Optional<Cidade> findById(Long id) {
-        return this.cidadeRepository.findById(id);
+    public Cidade findById(Long id) {
+        return this.cidadeRepository.findById(id).orElse(new Cidade());
     }
 
     @Transactional

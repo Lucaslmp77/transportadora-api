@@ -24,8 +24,8 @@ public class MarcaService {
         return this.marcaRepository.findAll();
     }
 
-    public Optional<Marca> findById(Long id) {
-        return this.marcaRepository.findById(id);
+    public Marca findById(Long id) {
+        return this.marcaRepository.findById(id).orElse(new Marca());
     }
 
     @Transactional

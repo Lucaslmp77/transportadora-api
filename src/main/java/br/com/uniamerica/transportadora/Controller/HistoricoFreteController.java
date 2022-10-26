@@ -36,7 +36,7 @@ public class HistoricoFreteController {
     }
 
     @GetMapping("/{idHistoricoFrete}")
-    public ResponseEntity<?> findById(
+    public ResponseEntity<HistoricoFrete> findById(
             @PathVariable("idHistoricoFrete") Long idHistoricoFrete
     ){
         return ResponseEntity.ok().body(this.historicoFreteService.findById(idHistoricoFrete));

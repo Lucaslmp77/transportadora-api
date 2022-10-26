@@ -24,8 +24,8 @@ public class DespesaService {
         return this.despesaRepository.findAll();
     }
 
-    public Optional<Despesa> findById(Long id) {
-        return this.despesaRepository.findById(id);
+    public Despesa findById(Long id) {
+        return this.despesaRepository.findById(id).orElse(new Despesa());
     }
 
     @Transactional

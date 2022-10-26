@@ -24,8 +24,8 @@ public class HistoricoFreteService {
         return this.historicoFreteRepository.findAll();
     }
 
-    public Optional<HistoricoFrete> findById(Long id) {
-        return this.historicoFreteRepository.findById(id);
+    public HistoricoFrete findById(Long id) {
+        return this.historicoFreteRepository.findById(id).orElse(new HistoricoFrete());
     }
 
 
