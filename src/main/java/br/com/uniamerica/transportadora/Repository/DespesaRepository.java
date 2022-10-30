@@ -36,7 +36,7 @@ public interface DespesaRepository extends JpaRepository<Despesa, Long> {
     List<Optional<Despesa>>findByNaoAprovadas();
 
     @Query("SELECT d FROM Despesa d WHERE d.aprovador IS NULL AND d.id = :idAprovador")
-    public List<Despesa> findByAprovador(@Param("idAprovador") Long idAprovador);
+    public List<Despesa> findByAprovadorIsNull(@Param("idAprovador") Long idAprovador);
 
     @Modifying
     @Query("UPDATE Despesa despesa SET despesa.ativo = false WHERE despesa.id = :idDespesa")

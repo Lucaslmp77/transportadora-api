@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "tb_usuarios", schema = "transportadora")
+@Table(name = "tb_usuario", schema = "transportadora")
 public class Usuario extends AbstractEntity{
 
     @Getter @Setter

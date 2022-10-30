@@ -47,8 +47,8 @@ public class DespesaService {
         }
     }
 
-    public List<Despesa> findByAprovador(Long id) {
-        return this.despesaRepository.findByAprovador(id);
+    public List<Despesa> findByAprovadorIsNull(Long id) {
+        return this.despesaRepository.findByAprovadorIsNull(id);
     }
 
 }

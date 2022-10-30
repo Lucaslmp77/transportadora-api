@@ -70,8 +70,8 @@ public class DespesaController {
     }
 
     @GetMapping("/{idAprovador}")
-    public ResponseEntity<?> findByAprovador(@PathVariable("idAprovador") Long idAprovador) {
-        return ResponseEntity.ok().body(this.despesaService.findByAprovador(idAprovador));
+    public ResponseEntity<?> findByAprovadorIsNull(@PathVariable("idAprovador") Long idAprovador) {
+        return ResponseEntity.ok().body(this.despesaService.findByAprovadorIsNull(idAprovador));
     }
 
 }

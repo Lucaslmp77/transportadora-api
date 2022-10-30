@@ -55,6 +55,56 @@ public class FreteController {
         }
     }
 
+    @PutMapping("/postar-frete/{idFrete}")
+    public ResponseEntity<?> postarFrete(@PathVariable("idFrete") final Long idFrete) {
+        try {
+            this.freteService.postarFrete(idFrete);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("Frete postado com sucesso!");
+    }
+
+    @PutMapping("/status/carga-para-em-transporte/{idFrete}")
+    public ResponseEntity<?> atualizarStatusCargaParaEmTransporte(@PathVariable("idFrete") final Long idFrete) {
+        try {
+            this.freteService.atualizarStatusCargaParaEmTransporte(idFrete);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("O frete iniciou seu transporte com sucesso!");
+    }
+
+    @PutMapping("/status/interrompido-para-em-transporte/{idFrete}")
+    public ResponseEntity<?> atualizarStatusInterrompidoParaEmTransporte(@PathVariable("idFrete") final Long idFrete) {
+        try {
+            this.freteService.atualizarStatusInterrompidoParaEmTransporte(idFrete);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("O frete iniciou seu transporte com sucesso!");
+    }
+
+    @PutMapping("/status/em-transporte-para-interrompido/{idFrete}")
+    public ResponseEntity<?> atualizarStatusEmTransporteParaInterrompido(@PathVariable("idFrete") final Long idFrete) {
+        try {
+            this.freteService.atualizarStatusEmTransporteParaInterrompido(idFrete);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("O frete foi interrompido!");
+    }
+
+    @PutMapping("/status/em-transporte-para-descarga/{idFrete}")
+    public ResponseEntity<?> atualizarStatusEmTransporteParaDescarga(@PathVariable("idFrete") final Long idFrete) {
+        try {
+            this.freteService.atualizarStatusEmTransporteParaDescarga(idFrete);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("Frete em descarga!");
+    }
+
     @PutMapping("/status/faturado/{idFrete}")
     public ResponseEntity<?> atualizarStatusFaturado(@PathVariable("idFrete") final Long idFrete) {
         try {
@@ -62,17 +112,17 @@ public class FreteController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok().body("Frete faturado com sucesso...");
+        return ResponseEntity.ok().body("Frete faturado com sucesso!");
     }
 
-    @PutMapping("/status/em-transporte/{idFrete}")
-    public ResponseEntity<?> atualizarStatusEmTransporte(@PathVariable("idFrete") final Long idFrete) {
+    @PutMapping("/status/cancelado/{idFrete}")
+    public ResponseEntity<?> atualizarStatusCancelado(@PathVariable("idFrete") final Long idFrete) {
         try {
-            this.freteService.atualizarStatusEmTransporte(idFrete);
+            this.freteService.atualizarStatusCancelado(idFrete);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok().body("O frete iniciou seu transporte com sucesso...");
+        return ResponseEntity.ok().body("Frete cancelado com sucesso!");
     }
 
 }
