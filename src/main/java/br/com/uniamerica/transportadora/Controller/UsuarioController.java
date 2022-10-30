@@ -55,14 +55,14 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/{idUsuario}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idUsuario}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idUsuario,
             @RequestBody Usuario usuario
     ){
         try{
-            this.usuarioService.delete(idUsuario, usuario);
-            return ResponseEntity.ok().body("Usuário deletado com sucesso!");
+            this.usuarioService.disable(idUsuario, usuario);
+            return ResponseEntity.ok().body("Usuário desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

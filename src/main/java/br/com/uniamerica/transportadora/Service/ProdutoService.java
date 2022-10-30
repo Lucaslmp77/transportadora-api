@@ -1,5 +1,6 @@
 package br.com.uniamerica.transportadora.Service;
 
+import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Produto;
 import br.com.uniamerica.transportadora.Repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,11 @@ public class ProdutoService {
     }
 
     @Transactional
-    public void delete(Long id, Produto produto) {
-        if(id == produto.getId()) {
-            this.produtoRepository.delete(produto);
-        } else {
+    public void disable(Long id, Produto produto){
+        if (id == produto.getId()) {
+            this.produtoRepository.disable(produto.getId());
+        }
+        else {
             throw new RuntimeException();
         }
     }

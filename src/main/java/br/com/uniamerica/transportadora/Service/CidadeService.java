@@ -1,6 +1,8 @@
 package br.com.uniamerica.transportadora.Service;
 
+import br.com.uniamerica.transportadora.Entity.Caminhao;
 import br.com.uniamerica.transportadora.Entity.Cidade;
+import br.com.uniamerica.transportadora.Entity.HistoricoFrete;
 import br.com.uniamerica.transportadora.Repository.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,12 +39,17 @@ public class CidadeService {
     }
 
     @Transactional
-    public void delete(Long id, Cidade cidade) {
-        if(id == cidade.getId()) {
-            this.cidadeRepository.delete(cidade);
-        } else {
+    public void disable(Long id, Cidade cidade){
+        if (id == cidade.getId()) {
+            this.cidadeRepository.disable(cidade.getId());
+        }
+        else {
             throw new RuntimeException();
         }
+    }
+
+    public List<Cidade> findByEstado(Long id) {
+        return this.cidadeRepository.findByEstado(id);
     }
 
 }

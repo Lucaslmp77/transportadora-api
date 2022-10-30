@@ -55,14 +55,14 @@ public class EstadoController {
         }
     }
 
-    @DeleteMapping("/{idEstado}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idEstado}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idEstado,
             @RequestBody Estado estado
     ){
         try{
-            this.estadoService.delete(idEstado, estado);
-            return ResponseEntity.ok().body("Estado deletado com sucesso!");
+            this.estadoService.disable(idEstado, estado);
+            return ResponseEntity.ok().body("Estado desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

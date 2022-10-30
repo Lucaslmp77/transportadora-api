@@ -55,14 +55,14 @@ public class ProdutoController {
         }
     }
 
-    @DeleteMapping("/{idProduto}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idProduto}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idProduto,
             @RequestBody Produto produto
     ){
         try{
-            this.produtoService.delete(idProduto, produto);
-            return ResponseEntity.ok().body("Produto deletado com sucesso!");
+            this.produtoService.disable(idProduto, produto);
+            return ResponseEntity.ok().body("Produto desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

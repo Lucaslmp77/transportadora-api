@@ -37,10 +37,11 @@ public class CaminhaoService {
     }
 
     @Transactional
-    public void delete(Long id, Caminhao caminhao) {
-        if(id == caminhao.getId()) {
-            this.caminhaoRepository.delete(caminhao);
-        } else {
+    public void disable(Long id, Caminhao caminhao){
+        if (id == caminhao.getId()) {
+            this.caminhaoRepository.disable(caminhao.getId());
+        }
+        else {
             throw new RuntimeException();
         }
     }

@@ -55,14 +55,14 @@ public class CaminhaoController {
         }
     }
 
-    @DeleteMapping("/{idCaminhao}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idCaminhao}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idCaminhao,
             @RequestBody Caminhao caminhao
     ){
         try{
-            this.caminhaoService.delete(idCaminhao, caminhao);
-            return ResponseEntity.ok().body("Caminhão deletado com sucesso!");
+            this.caminhaoService.disable(idCaminhao, caminhao);
+            return ResponseEntity.ok().body("Caminhão desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

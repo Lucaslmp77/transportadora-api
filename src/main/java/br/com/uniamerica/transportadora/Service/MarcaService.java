@@ -1,5 +1,6 @@
 package br.com.uniamerica.transportadora.Service;
 
+import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Marca;
 import br.com.uniamerica.transportadora.Repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,11 @@ public class MarcaService {
     }
 
     @Transactional
-    public void delete(Long id, Marca marca) {
-        if(id == marca.getId()) {
-            this.marcaRepository.delete(marca);
-        } else {
+    public void disable(Long id, Marca marca){
+        if (id == marca.getId()) {
+            this.marcaRepository.disable(marca.getId());
+        }
+        else {
             throw new RuntimeException();
         }
     }

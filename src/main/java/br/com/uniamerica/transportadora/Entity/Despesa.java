@@ -30,7 +30,7 @@ public class Despesa extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @Getter @Setter
-    @JoinColumn(name = "id_aprovador", nullable = false)
+    @JoinColumn(name = "id_aprovador")
     private Usuario aprovador;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)

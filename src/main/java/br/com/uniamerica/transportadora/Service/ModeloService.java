@@ -1,5 +1,6 @@
 package br.com.uniamerica.transportadora.Service;
 
+import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Modelo;
 import br.com.uniamerica.transportadora.Repository.ModeloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,17 @@ public class ModeloService {
     }
 
     @Transactional
-    public void delete(Long id, Modelo modelo) {
-        if(id == modelo.getId()) {
-            this.modeloRepository.delete(modelo);
-        } else {
+    public void disable(Long id, Modelo modelo){
+        if (id == modelo.getId()) {
+            this.modeloRepository.disable(modelo.getId());
+        }
+        else {
             throw new RuntimeException();
         }
+    }
+
+    public List<Modelo> findByMarca(Long id) {
+        return this.modeloRepository.findByMarca(id);
     }
 
 }

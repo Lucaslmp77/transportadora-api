@@ -1,6 +1,7 @@
 package br.com.uniamerica.transportadora.Controller;
 
 import br.com.uniamerica.transportadora.Entity.Cidade;
+import br.com.uniamerica.transportadora.Repository.CidadeRepository;
 import br.com.uniamerica.transportadora.Service.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,17 +56,22 @@ public class CidadeController {
         }
     }
 
-    @DeleteMapping("/{idCidade}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idCidade}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idCidade,
             @RequestBody Cidade cidade
     ){
         try{
-            this.cidadeService.delete(idCidade, cidade);
-            return ResponseEntity.ok().body("Cidade deletada com sucesso!");
+            this.cidadeService.disable(idCidade, cidade);
+            return ResponseEntity.ok().body("Cidade desativada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/estado/{idEstado}")
+    public ResponseEntity<?> findByEstado(@PathVariable("idEstado") Long idEstado) {
+        return ResponseEntity.ok().body(this.cidadeService.findByEstado(idEstado));
     }
 
 }

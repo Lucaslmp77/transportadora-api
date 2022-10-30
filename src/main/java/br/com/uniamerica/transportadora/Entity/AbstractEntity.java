@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -11,10 +12,12 @@ public abstract class AbstractEntity {
 
     @Id
     @Getter @Setter
+    @NotNull
     @Column(name = "id", length = 25, nullable = false, unique = true)
     private Long id;
 
     @Getter @Setter
+    @NotNull
     @Column(name = "cadastrar", nullable = false)
     private LocalDateTime cadastrar;
 
@@ -23,6 +26,7 @@ public abstract class AbstractEntity {
     private LocalDateTime alterar;
 
     @Getter @Setter
+    @NotNull
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 

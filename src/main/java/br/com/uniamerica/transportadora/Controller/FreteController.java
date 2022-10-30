@@ -55,4 +55,24 @@ public class FreteController {
         }
     }
 
+    @PutMapping("/status/faturado/{idFrete}")
+    public ResponseEntity<?> atualizarStatusFaturado(@PathVariable("idFrete") final Long idFrete) {
+        try {
+            this.freteService.atualizarStatusFaturado(idFrete);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("Frete faturado com sucesso...");
+    }
+
+    @PutMapping("/status/em-transporte/{idFrete}")
+    public ResponseEntity<?> atualizarStatusEmTransporte(@PathVariable("idFrete") final Long idFrete) {
+        try {
+            this.freteService.atualizarStatusEmTransporte(idFrete);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("O frete iniciou seu transporte com sucesso...");
+    }
+
 }

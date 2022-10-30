@@ -1,6 +1,7 @@
 package br.com.uniamerica.transportadora.Controller;
 
 import br.com.uniamerica.transportadora.Entity.HistoricoFrete;
+import br.com.uniamerica.transportadora.Repository.HistoricoFreteRepository;
 import br.com.uniamerica.transportadora.Service.HistoricoFreteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,11 @@ public class HistoricoFreteController {
             @PathVariable("idHistoricoFrete") Long idHistoricoFrete
     ){
         return ResponseEntity.ok().body(this.historicoFreteService.findById(idHistoricoFrete));
+    }
+
+    @GetMapping("/frete/{idFrete}")
+    public ResponseEntity<?> findByFrete(@PathVariable("idFrete") Long idFrete) {
+        return ResponseEntity.ok().body(this.historicoFreteService.findByFrete(idFrete));
     }
 
 }

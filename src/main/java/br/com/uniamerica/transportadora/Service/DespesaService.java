@@ -1,5 +1,6 @@
 package br.com.uniamerica.transportadora.Service;
 
+import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Despesa;
 import br.com.uniamerica.transportadora.Repository.DespesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,17 @@ public class DespesaService {
     }
 
     @Transactional
-    public void delete(Long id, Despesa despesa) {
-        if(id == despesa.getId()) {
-            this.despesaRepository.delete(despesa);
-        } else {
+    public void disable(Long id, Despesa despesa){
+        if (id == despesa.getId()) {
+            this.despesaRepository.disable(despesa.getId());
+        }
+        else {
             throw new RuntimeException();
         }
+    }
+
+    public List<Despesa> findByAprovador(Long id) {
+        return this.despesaRepository.findByAprovador(id);
     }
 
 }

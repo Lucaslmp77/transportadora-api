@@ -1,6 +1,7 @@
 package br.com.uniamerica.transportadora.Controller;
 
 import br.com.uniamerica.transportadora.Entity.Modelo;
+import br.com.uniamerica.transportadora.Repository.ModeloRepository;
 import br.com.uniamerica.transportadora.Service.ModeloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,17 +56,22 @@ public class ModeloController {
         }
     }
 
-    @DeleteMapping("/{idModelo}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idModelo}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idModelo,
             @RequestBody Modelo modelo
     ){
         try{
-            this.modeloService.delete(idModelo, modelo);
-            return ResponseEntity.ok().body("Modelo deletado com sucesso!");
+            this.modeloService.disable(idModelo, modelo);
+            return ResponseEntity.ok().body("Modelo desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/marca/{idMarca}")
+    public ResponseEntity<?> findByMarca(@PathVariable("idMarca") Long idMarca) {
+        return ResponseEntity.ok().body(this.modeloService.findByMarca(idMarca));
     }
 
 }

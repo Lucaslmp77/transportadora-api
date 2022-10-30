@@ -1,6 +1,7 @@
 package br.com.uniamerica.transportadora.Controller;
 
 import br.com.uniamerica.transportadora.Entity.Despesa;
+import br.com.uniamerica.transportadora.Repository.DespesaRepository;
 import br.com.uniamerica.transportadora.Service.DespesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,17 +56,22 @@ public class DespesaController {
         }
     }
 
-    @DeleteMapping("/{idDespesa}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idDespesa}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idDespesa,
             @RequestBody Despesa despesa
     ){
         try{
-            this.despesaService.delete(idDespesa, despesa);
-            return ResponseEntity.ok().body("Despesa deletada com sucesso!");
+            this.despesaService.disable(idDespesa, despesa);
+            return ResponseEntity.ok().body("Despesa desativada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/{idAprovador}")
+    public ResponseEntity<?> findByAprovador(@PathVariable("idAprovador") Long idAprovador) {
+        return ResponseEntity.ok().body(this.despesaService.findByAprovador(idAprovador));
     }
 
 }

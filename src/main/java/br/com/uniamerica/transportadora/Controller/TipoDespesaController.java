@@ -55,14 +55,14 @@ public class TipoDespesaController {
         }
     }
 
-    @DeleteMapping("/{idTipoDespesa}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idTipoDespesa}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idTipoDespesa,
             @RequestBody TipoDespesa tipoDespesa
     ){
         try{
-            this.tipoDespesaService.delete(idTipoDespesa, tipoDespesa);
-            return ResponseEntity.ok().body("Tipo da despesa deletado com sucesso!");
+            this.tipoDespesaService.disable(idTipoDespesa, tipoDespesa);
+            return ResponseEntity.ok().body("Tipo da despesa desativada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

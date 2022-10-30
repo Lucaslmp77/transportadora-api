@@ -55,14 +55,14 @@ public class MarcaController {
         }
     }
 
-    @DeleteMapping("/{idMarca}")
-    public ResponseEntity<?> delete(
+    @PutMapping("/ativo/{idMarca}")
+    public ResponseEntity<?> disable(
             @PathVariable Long idMarca,
             @RequestBody Marca marca
     ){
         try{
-            this.marcaService.delete(idMarca, marca);
-            return ResponseEntity.ok().body("Marca deletada com sucesso!");
+            this.marcaService.disable(idMarca, marca);
+            return ResponseEntity.ok().body("Marca desativada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
