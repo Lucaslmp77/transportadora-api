@@ -130,10 +130,10 @@ public class FreteService {
 
         final Frete frete = this.freteRepository.findById(idFrete).orElse(null);
 
-        Assert.isTrue(frete != null, "Não foi possível localizar o frete informado");
+        Assert.isTrue(frete != null, "Não foi possível localizar o frete informado...");
 
         Assert.isTrue(!frete.getStatusFrete().equals(StatusFrete.INTERROMPIDO),
-                "Não é possível iniciar o transporte do frete, pois seu status é diferente de interrompido");
+                "Não é possível iniciar o transporte do frete, pois seu status é diferente de interrompido...");
 
         frete.setStatusFrete(StatusFrete.EM_TRANSPORTE);
         this.freteRepository.save(frete);
