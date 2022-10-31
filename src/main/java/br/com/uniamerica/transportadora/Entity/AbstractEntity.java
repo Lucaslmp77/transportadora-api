@@ -4,29 +4,26 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Getter @Setter
-    @NotNull
     @Column(name = "id", length = 25, nullable = false, unique = true)
     private Long id;
 
     @Getter @Setter
-    @NotNull
     @Column(name = "cadastrar", nullable = false)
     private LocalDateTime cadastrar;
 
     @Getter @Setter
-    @Column(name = "alterar", length = 25, nullable = false)
+    @Column(name = "alterar")
     private LocalDateTime alterar;
 
     @Getter @Setter
-    @NotNull
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 

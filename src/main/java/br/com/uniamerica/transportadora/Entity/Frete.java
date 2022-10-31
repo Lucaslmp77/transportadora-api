@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -12,27 +11,27 @@ import java.time.LocalDateTime;
 @Table(name = "tb_frete", schema = "transportadora")
 public class Frete extends AbstractEntity {
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_produto", nullable = false)
     private Produto produto;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_cidade_origem", nullable = false)
     private Cidade cidadeOrigem;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_cidade_destino", nullable = false)
     private Cidade cidadeDestino;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_motorista", nullable = false)
     private Usuario motorista;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_caminhao", nullable = false)
     private Caminhao caminhao;
@@ -43,11 +42,11 @@ public class Frete extends AbstractEntity {
     private StatusFrete statusFrete;
 
     @Getter @Setter
-    @Column(name = "quilometragem_ini", length = 25, nullable = false)
+    @Column(name = "quilometragem_ini", nullable = false,  precision = 5, scale = 3)
     private BigDecimal quilometragemIni;
 
     @Getter @Setter
-    @Column(name = "quilometragem_fim", length = 25, nullable = false)
+    @Column(name = "quilometragem_fim", nullable = true,  precision = 5, scale = 3)
     private BigDecimal quilometragemFim;
 
     @Getter @Setter

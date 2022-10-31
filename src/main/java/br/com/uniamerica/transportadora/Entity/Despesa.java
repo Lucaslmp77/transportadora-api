@@ -28,7 +28,7 @@ public class Despesa extends AbstractEntity {
     @Column(name = "data", length = 25, nullable = false)
     private LocalDateTime data;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_aprovador")
     private Usuario aprovador;

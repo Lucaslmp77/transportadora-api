@@ -5,12 +5,12 @@ import br.com.uniamerica.transportadora.Entity.Frete;
 import br.com.uniamerica.transportadora.Entity.StatusFrete;
 import br.com.uniamerica.transportadora.Repository.DespesaRepository;
 import br.com.uniamerica.transportadora.Repository.FreteRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.util.Assert;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -25,8 +25,24 @@ public class FreteService {
     @Autowired
     private HistoricoFreteService historicoFreteService;
 
-    @Transactional
+    public boolean checkCamposFreteIsNull(Frete frete) {
+        if (frete.getStatusFrete() == null || frete.getCaminhao() == null
+                || frete.getProduto() == null || frete.getMotorista() == null || frete.getCidadeOrigem() == null
+                || frete.getCidadeDestino() == null || frete.getDataInicio() == null || frete.getDataFim() == null
+                || frete.getQuilometragemIni() == null || frete.getQuilometragemFim() == null
+                || frete.getTotalBrutoRecebidoNota() == null || frete.getTotalLiquidoRecebido() == null
+                || frete.getPrecoTonelada() == null || frete.getPesoInicial() == null || frete.getPesoFinal() == null
+                || frete.getPesoFinalTransportado() == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public Frete save(Frete frete) {
+        Assert.isTrue(checkCamposFreteIsNull(frete), "Erro, algum campo do frete é nulo");
+        this.historicoFreteService.cadastrar(frete, StatusFrete.CARGA);
         frete.setStatusFrete(StatusFrete.CARGA);
         return this.freteRepository.save(frete);
     }
@@ -39,7 +55,7 @@ public class FreteService {
         return this.freteRepository.findById(id).orElse(new Frete());
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void update(Long id, Frete frete) {
         if(id == frete.getId()) {
             this.freteRepository.save(frete);
@@ -48,43 +64,14 @@ public class FreteService {
         }
     }
 
-    public boolean checkCamposFreteIsNull(Frete frete) {
-        if (frete.getId() == null && frete.getStatusFrete() == null && frete.getCaminhao() == null
-                && frete.getProduto() == null && frete.getMotorista() == null && frete.getCidadeOrigem() == null
-                && frete.getCidadeDestino() == null && frete.getDataInicio() == null && frete.getDataFim() == null
-                && frete.getQuilometragemIni() == null && frete.getQuilometragemFim() == null
-                && frete.getTotalBrutoRecebidoNota() == null && frete.getTotalLiquidoRecebido() == null
-                && frete.getPrecoTonelada() == null && frete.getPesoInicial() == null && frete.getPesoFinal() == null
-                && frete.getPesoFinalTransportado() == null) {
-            return false;
-        }else {
-            return true;
-        }
-    }
-
-    @Transactional
-    public void postarFrete(final Long idFrete) {
-
-        final Frete frete = this.freteRepository.findById(idFrete).orElse(null);
-
-        Assert.isTrue(frete != null, "Não foi possível localizar o frete informado.");
-
-        Assert.isTrue(checkCamposFreteIsNull(frete), "Erro, algum campo do frete é nulo");
-
-        frete.setStatusFrete(StatusFrete.CARGA);
-        this.freteRepository.save(frete);
-
-        this.historicoFreteService.cadastrar(frete, StatusFrete.CARGA);
-    }
-
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void atualizarStatusCargaParaEmTransporte(final Long idFrete) {
 
         final Frete frete = this.freteRepository.findById(idFrete).orElse(null);
 
         Assert.isTrue(frete != null, "Não foi possível localizar o frete informado.");
 
-        Assert.isTrue(!frete.getStatusFrete().equals(StatusFrete.CARGA),
+        Assert.isTrue(frete.getStatusFrete().equals(StatusFrete.CARGA),
                 "Não é possível iniciar o transporte do frete, pois seu status é diferente de em carga.");
 
         frete.setStatusFrete(StatusFrete.EM_TRANSPORTE);
@@ -93,14 +80,14 @@ public class FreteService {
         this.historicoFreteService.cadastrar(frete, StatusFrete.EM_TRANSPORTE);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void atualizarStatusInterrompidoParaEmTransporte(final Long idFrete) {
 
         final Frete frete = this.freteRepository.findById(idFrete).orElse(null);
 
         Assert.isTrue(frete != null, "Não foi possível localizar o frete informado.");
 
-        Assert.isTrue(!frete.getStatusFrete().equals(StatusFrete.INTERROMPIDO),
+        Assert.isTrue(frete.getStatusFrete().equals(StatusFrete.INTERROMPIDO),
                 "Não é possível iniciar o transporte do frete, pois seu status é diferente de interrompido.");
 
         frete.setStatusFrete(StatusFrete.EM_TRANSPORTE);
@@ -109,14 +96,14 @@ public class FreteService {
         this.historicoFreteService.cadastrar(frete, StatusFrete.EM_TRANSPORTE);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void atualizarStatusEmTransporteParaInterrompido(final Long idFrete) {
 
         final Frete frete = this.freteRepository.findById(idFrete).orElse(null);
 
         Assert.isTrue(frete != null, "Não foi possível localizar o frete informado.");
 
-        Assert.isTrue(!frete.getStatusFrete().equals(StatusFrete.EM_TRANSPORTE),
+        Assert.isTrue(frete.getStatusFrete().equals(StatusFrete.EM_TRANSPORTE),
                 "Não é possível iniciar o transporte do frete, pois seu status é diferente de em transporte.");
 
         frete.setStatusFrete(StatusFrete.INTERROMPIDO);
@@ -125,14 +112,14 @@ public class FreteService {
         this.historicoFreteService.cadastrar(frete, StatusFrete.INTERROMPIDO);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void atualizarStatusEmTransporteParaDescarga(final Long idFrete) {
 
         final Frete frete = this.freteRepository.findById(idFrete).orElse(null);
 
         Assert.isTrue(frete != null, "Não foi possível localizar o frete informado.");
 
-        Assert.isTrue(!frete.getStatusFrete().equals(StatusFrete.EM_TRANSPORTE),
+        Assert.isTrue(frete.getStatusFrete().equals(StatusFrete.EM_TRANSPORTE),
                 "Não é possível iniciar o transporte do frete, pois seu status é diferente de em transporte.");
 
         frete.setStatusFrete(StatusFrete.DESCARGA);
@@ -141,15 +128,15 @@ public class FreteService {
         this.historicoFreteService.cadastrar(frete, StatusFrete.DESCARGA);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void atualizarStatusFaturado(final Long idFrete) {
 
-        final Frete frete = this.freteRepository.findById(idFrete).orElse(new Frete());
+        final Frete frete = this.freteRepository.findById(idFrete).orElse(null);
 
         Assert.isTrue(frete != null, "Não foi possível localizar o frete informado.");
 
-        Assert.isTrue(!frete.getStatusFrete().equals(StatusFrete.DESCARGA),
-                "Não é possível faturar um frete que não está com o sucesso de descarte.");
+        Assert.isTrue(frete.getStatusFrete().equals(StatusFrete.DESCARGA),
+                "Não é possível faturar um frete que não está com o status de descarga.");
 
         final List<Despesa> despesa = this.despesaRepository.findByFreteAndAprovadorIsNull(frete.getId());
 
@@ -162,7 +149,7 @@ public class FreteService {
         this.historicoFreteService.cadastrar(frete, StatusFrete.FATURADO);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void atualizarStatusCancelado(final Long idFrete) {
 
         final Frete frete = this.freteRepository.findById(idFrete).orElse(null);

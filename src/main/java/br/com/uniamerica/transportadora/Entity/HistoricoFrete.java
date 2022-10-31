@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 public class HistoricoFrete extends AbstractEntity {
 
     @Getter @Setter
-    @Column(name = "data", length = 10, nullable = false)
+    @Column(name = "data", nullable = false)
     private LocalDateTime data;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_frete", nullable = false)
     private Frete frete;
@@ -24,7 +24,7 @@ public class HistoricoFrete extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private StatusFrete statusFrete;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_executor", nullable = false)
     private Usuario executor;

@@ -43,7 +43,7 @@ public interface DespesaRepository extends JpaRepository<Despesa, Long> {
     public void disable(@Param("idDespesa") Long id);
 
     @Query("FROM Despesa despesa WHERE despesa.frete.id = :idFrete AND despesa.ativo = true " +
-            "AND despesa.aprovador.id is null")
+            "AND despesa.aprovada = false")
     public List<Despesa> findByFreteAndAprovadorIsNull(@Param("idFrete") Long idFrete);
 
 }

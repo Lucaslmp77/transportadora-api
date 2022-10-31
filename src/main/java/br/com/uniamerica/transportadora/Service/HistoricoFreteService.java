@@ -44,6 +44,9 @@ public class HistoricoFreteService {
         final HistoricoFrete historicoFrete = new HistoricoFrete();
         historicoFrete.setStatusFrete(statusFrete);
         historicoFrete.setData(LocalDateTime.now());
+        historicoFrete.setAlterar(LocalDateTime.now());
+        historicoFrete.setCadastrar(LocalDateTime.now());
+        historicoFrete.setAtivo(true);
         historicoFrete.setFrete(frete);
         historicoFrete.setExecutor(usuario);
 

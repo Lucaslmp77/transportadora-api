@@ -55,16 +55,6 @@ public class FreteController {
         }
     }
 
-    @PutMapping("/postar-frete/{idFrete}")
-    public ResponseEntity<?> postarFrete(@PathVariable("idFrete") final Long idFrete) {
-        try {
-            this.freteService.postarFrete(idFrete);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok().body("Frete postado com sucesso!");
-    }
-
     @PutMapping("/status/carga-para-em-transporte/{idFrete}")
     public ResponseEntity<?> atualizarStatusCargaParaEmTransporte(@PathVariable("idFrete") final Long idFrete) {
         try {
