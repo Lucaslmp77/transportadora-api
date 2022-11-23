@@ -55,13 +55,12 @@ public class EstadoController {
         }
     }
 
-    @PutMapping("/ativo/{idEstado}")
+    @PutMapping("/disable/{idEstado}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idEstado,
-            @RequestBody Estado estado
+            @PathVariable Long idEstado
     ){
         try{
-            this.estadoService.disable(idEstado, estado);
+            this.estadoService.disable(idEstado);
             return ResponseEntity.ok().body("Estado desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

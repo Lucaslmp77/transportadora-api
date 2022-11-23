@@ -37,9 +37,10 @@ public class CaminhaoService {
     }
 
     @Transactional
-    public void disable(Long id, Caminhao caminhao){
-        if (id == caminhao.getId()) {
-            this.caminhaoRepository.disable(caminhao.getId());
+    public void disable(Long id){
+        var caminhao = this.caminhaoRepository.findById(id);
+        if (id == caminhao.get().getId()) {
+            this.caminhaoRepository.disable(id);
         }
         else {
             throw new RuntimeException();

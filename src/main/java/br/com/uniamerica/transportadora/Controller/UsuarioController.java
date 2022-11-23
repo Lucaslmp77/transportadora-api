@@ -55,13 +55,12 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/ativo/{idUsuario}")
+    @PutMapping("/disable/{idUsuario}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idUsuario,
-            @RequestBody Usuario usuario
+            @PathVariable Long idUsuario
     ){
         try{
-            this.usuarioService.disable(idUsuario, usuario);
+            this.usuarioService.disable(idUsuario);
             return ResponseEntity.ok().body("Usuário desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

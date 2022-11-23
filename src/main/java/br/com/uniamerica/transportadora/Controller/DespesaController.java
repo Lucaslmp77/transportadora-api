@@ -56,13 +56,12 @@ public class DespesaController {
         }
     }
 
-    @PutMapping("/ativo/{idDespesa}")
+    @PutMapping("/disable/{idDespesa}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idDespesa,
-            @RequestBody Despesa despesa
+            @PathVariable Long idDespesa
     ){
         try{
-            this.despesaService.disable(idDespesa, despesa);
+            this.despesaService.disable(idDespesa);
             return ResponseEntity.ok().body("Despesa desativada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

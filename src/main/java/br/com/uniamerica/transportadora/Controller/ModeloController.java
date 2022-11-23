@@ -56,13 +56,12 @@ public class ModeloController {
         }
     }
 
-    @PutMapping("/ativo/{idModelo}")
+    @PutMapping("/disable/{idModelo}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idModelo,
-            @RequestBody Modelo modelo
+            @PathVariable Long idModelo
     ){
         try{
-            this.modeloService.disable(idModelo, modelo);
+            this.modeloService.disable(idModelo);
             return ResponseEntity.ok().body("Modelo desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

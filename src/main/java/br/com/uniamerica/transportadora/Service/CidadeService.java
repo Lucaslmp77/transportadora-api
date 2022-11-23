@@ -39,9 +39,10 @@ public class CidadeService {
     }
 
     @Transactional
-    public void disable(Long id, Cidade cidade){
-        if (id == cidade.getId()) {
-            this.cidadeRepository.disable(cidade.getId());
+    public void disable(Long id){
+        var cidade = this.cidadeRepository.findById(id);
+        if (id == cidade.get().getId()) {
+            this.cidadeRepository.disable(id);
         }
         else {
             throw new RuntimeException();

@@ -56,13 +56,12 @@ public class CidadeController {
         }
     }
 
-    @PutMapping("/ativo/{idCidade}")
+    @PutMapping("/disable/{idCidade}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idCidade,
-            @RequestBody Cidade cidade
+            @PathVariable Long idCidade
     ){
         try{
-            this.cidadeService.disable(idCidade, cidade);
+            this.cidadeService.disable(idCidade);
             return ResponseEntity.ok().body("Cidade desativada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

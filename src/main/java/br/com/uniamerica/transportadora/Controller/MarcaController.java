@@ -55,13 +55,12 @@ public class MarcaController {
         }
     }
 
-    @PutMapping("/ativo/{idMarca}")
+    @PutMapping("/disable/{idMarca}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idMarca,
-            @RequestBody Marca marca
+            @PathVariable Long idMarca
     ){
         try{
-            this.marcaService.disable(idMarca, marca);
+            this.marcaService.disable(idMarca);
             return ResponseEntity.ok().body("Marca desativada com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

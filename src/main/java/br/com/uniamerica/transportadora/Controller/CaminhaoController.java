@@ -55,13 +55,12 @@ public class CaminhaoController {
         }
     }
 
-    @PutMapping("/ativo/{idCaminhao}")
+    @PutMapping("/disable/{idCaminhao}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idCaminhao,
-            @RequestBody Caminhao caminhao
+            @PathVariable Long idCaminhao
     ){
         try{
-            this.caminhaoService.disable(idCaminhao, caminhao);
+            this.caminhaoService.disable(idCaminhao);
             return ResponseEntity.ok().body("Caminhão desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

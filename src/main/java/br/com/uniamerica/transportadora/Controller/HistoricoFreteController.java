@@ -1,7 +1,6 @@
 package br.com.uniamerica.transportadora.Controller;
 
 import br.com.uniamerica.transportadora.Entity.HistoricoFrete;
-import br.com.uniamerica.transportadora.Repository.HistoricoFreteRepository;
 import br.com.uniamerica.transportadora.Service.HistoricoFreteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

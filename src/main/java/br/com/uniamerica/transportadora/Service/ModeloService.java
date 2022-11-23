@@ -38,9 +38,10 @@ public class ModeloService {
     }
 
     @Transactional
-    public void disable(Long id, Modelo modelo){
-        if (id == modelo.getId()) {
-            this.modeloRepository.disable(modelo.getId());
+    public void disable(Long id){
+        var modelo = this.modeloRepository.findById(id);
+        if (id == modelo.get().getId()) {
+            this.modeloRepository.disable(id);
         }
         else {
             throw new RuntimeException();

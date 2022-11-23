@@ -38,9 +38,10 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void disable(Long id, Usuario usuario){
-        if (id == usuario.getId()) {
-            this.usuarioRepository.disable(usuario.getId());
+    public void disable(Long id){
+        var usuario = this.usuarioRepository.findById(id);
+        if (id == usuario.get().getId()) {
+            this.usuarioRepository.disable(id);
         }
         else {
             throw new RuntimeException();

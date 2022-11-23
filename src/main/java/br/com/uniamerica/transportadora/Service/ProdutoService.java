@@ -38,9 +38,10 @@ public class ProdutoService {
     }
 
     @Transactional
-    public void disable(Long id, Produto produto){
-        if (id == produto.getId()) {
-            this.produtoRepository.disable(produto.getId());
+    public void disable(Long id){
+        var produto = this.produtoRepository.findById(id);
+        if (id == produto.get().getId()) {
+            this.produtoRepository.disable(id);
         }
         else {
             throw new RuntimeException();

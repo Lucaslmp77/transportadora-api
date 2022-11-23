@@ -55,13 +55,12 @@ public class ProdutoController {
         }
     }
 
-    @PutMapping("/ativo/{idProduto}")
+    @PutMapping("/disable/{idProduto}")
     public ResponseEntity<?> disable(
-            @PathVariable Long idProduto,
-            @RequestBody Produto produto
+            @PathVariable Long idProduto
     ){
         try{
-            this.produtoService.disable(idProduto, produto);
+            this.produtoService.disable(idProduto);
             return ResponseEntity.ok().body("Produto desativado com sucesso!");
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

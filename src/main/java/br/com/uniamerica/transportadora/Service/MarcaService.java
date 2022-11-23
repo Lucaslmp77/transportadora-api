@@ -38,9 +38,10 @@ public class MarcaService {
     }
 
     @Transactional
-    public void disable(Long id, Marca marca){
-        if (id == marca.getId()) {
-            this.marcaRepository.disable(marca.getId());
+    public void disable(Long id){
+        var marca = this.marcaRepository.findById(id);
+        if (id == marca.get().getId()) {
+            this.marcaRepository.disable(id);
         }
         else {
             throw new RuntimeException();

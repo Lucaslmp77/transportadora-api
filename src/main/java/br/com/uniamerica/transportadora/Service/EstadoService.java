@@ -38,9 +38,10 @@ public class EstadoService {
     }
 
     @Transactional
-    public void disable(Long id, Estado estado){
-        if (id == estado.getId()) {
-            this.estadoRepository.disable(estado.getId());
+    public void disable(Long id){
+        var estado = this.estadoRepository.findById(id);
+        if (id == estado.get().getId()) {
+            this.estadoRepository.disable(id);
         }
         else {
             throw new RuntimeException();

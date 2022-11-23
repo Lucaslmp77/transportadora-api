@@ -38,9 +38,10 @@ public class DespesaService {
     }
 
     @Transactional
-    public void disable(Long id, Despesa despesa){
-        if (id == despesa.getId()) {
-            this.despesaRepository.disable(despesa.getId());
+    public void disable(Long id){
+        var despesa = this.despesaRepository.findById(id);
+        if (id == despesa.get().getId()) {
+            this.despesaRepository.disable(id);
         }
         else {
             throw new RuntimeException();
