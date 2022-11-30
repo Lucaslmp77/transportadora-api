@@ -1,7 +1,9 @@
 package br.com.uniamerica.transportadora.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,6 +19,7 @@ public abstract class AbstractEntity {
 
     @Getter @Setter
     @Column(name = "cadastrar", nullable = false)
+    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDateTime cadastrar;
 
     @Getter @Setter
