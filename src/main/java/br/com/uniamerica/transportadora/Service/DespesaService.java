@@ -1,6 +1,5 @@
 package br.com.uniamerica.transportadora.Service;
 
-import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Despesa;
 import br.com.uniamerica.transportadora.Repository.DespesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,6 @@ package br.com.uniamerica.transportadora.Repository;
 
 import br.com.uniamerica.transportadora.Entity.Frete;
 import br.com.uniamerica.transportadora.Entity.HistoricoFrete;
-import br.com.uniamerica.transportadora.Entity.Modelo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,6 +1,7 @@
 package br.com.uniamerica.transportadora.Entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "tb_frete", schema = "transportadora")
 public class Frete extends AbstractEntity {
 
@@ -42,7 +44,7 @@ public class Frete extends AbstractEntity {
     private StatusFrete statusFrete;
 
     @Getter @Setter
-    @Column(name = "quilometragem_ini", nullable = false,  precision = 5, scale = 3)
+    @Column(name = "quilometragem_ini", nullable = true,  precision = 5, scale = 3)
     private BigDecimal quilometragemIni;
 
     @Getter @Setter
@@ -50,23 +52,23 @@ public class Frete extends AbstractEntity {
     private BigDecimal quilometragemFim;
 
     @Getter @Setter
-    @Column(name = "total_bruto_recebido_nota", nullable = false, precision = 5, scale = 3)
+    @Column(name = "total_bruto_recebido_nota", nullable = true, precision = 5, scale = 3)
     private BigDecimal totalBrutoRecebidoNota;
 
     @Getter @Setter
-    @Column(name = "total_liquido_recebido", nullable = false, precision = 5, scale = 3)
+    @Column(name = "total_liquido_recebido", nullable = true, precision = 5, scale = 3)
     private BigDecimal totalLiquidoRecebido;
 
     @Getter @Setter
-    @Column(name = "peso_inicial", nullable = false, precision = 5, scale = 3)
+    @Column(name = "peso_inicial", nullable = true, precision = 5, scale = 3)
     private BigDecimal pesoInicial;
 
     @Getter @Setter
-    @Column(name = "peso_final", nullable = false, precision = 5, scale = 3)
+    @Column(name = "peso_final", nullable = true, precision = 5, scale = 3)
     private BigDecimal pesoFinal;
 
     @Getter @Setter
-    @Column(name = "peso_final_transportado", nullable = false, precision = 5, scale = 3)
+    @Column(name = "peso_final_transportado", nullable = true, precision = 5, scale = 3)
     private BigDecimal pesoFinalTransportado;
 
     @Getter @Setter
@@ -74,14 +76,14 @@ public class Frete extends AbstractEntity {
     private BigDecimal precoTonelada;
 
     @Getter @Setter
-    @Column(name = "data_inicio", length = 25, nullable = false)
+    @Column(name = "data_inicio", length = 25, nullable = true)
     private LocalDateTime dataInicio;
 
     @Getter @Setter
-    @Column(name = "data_fim", length = 25, nullable = false)
+    @Column(name = "data_fim", length = 25, nullable = true)
     private LocalDateTime dataFim;
 
     @Getter @Setter
-    @Column(name = "observacao", length = 255)
+    @Column(name = "observacao", length = 255, nullable = true)
     private String observacao;
 }

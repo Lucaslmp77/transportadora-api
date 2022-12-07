@@ -41,8 +41,8 @@ public class FreteService {
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public Frete save(Frete frete) {
-        Assert.isTrue(checkCamposFreteIsNull(frete), "Erro, algum campo do frete é nulo");
-//        this.historicoFreteService.cadastrar(frete, StatusFrete.CARGA);
+//        Assert.isTrue(checkCamposFreteIsNull(frete), "Erro, algum campo do frete é nulo");
+//        this.historicoFreteService.cadastrar(frete, StatusFrete.CARGA)
         frete.setStatusFrete(StatusFrete.CARGA);
         return this.freteRepository.save(frete);
     }

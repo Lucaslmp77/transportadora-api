@@ -1,7 +1,6 @@
 package br.com.uniamerica.transportadora.Controller;
 
 import br.com.uniamerica.transportadora.Entity.Despesa;
-import br.com.uniamerica.transportadora.Repository.DespesaRepository;
 import br.com.uniamerica.transportadora.Service.DespesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

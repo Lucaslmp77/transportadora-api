@@ -1,6 +1,5 @@
 package br.com.uniamerica.transportadora.Service;
 
-import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Usuario;
 import br.com.uniamerica.transportadora.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,10 @@ public class UsuarioService {
 
     public List<Usuario> listAll() {
         return this.usuarioRepository.findAll();
+    }
+
+    public List<Usuario> findByMotoristasAtivos() {
+        return this.usuarioRepository.findByMotoristasAtivos();
     }
 
     public Usuario findById(Long id) {

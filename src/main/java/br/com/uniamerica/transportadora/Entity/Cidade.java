@@ -19,7 +19,7 @@ public class Cidade extends AbstractEntity{
     @Column(name = "nome", length = 25, nullable = false)
     private String nome;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_estado", nullable = false)
     private Estado estado;

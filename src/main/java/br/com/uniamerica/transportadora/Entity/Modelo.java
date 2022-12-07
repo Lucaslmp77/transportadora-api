@@ -13,7 +13,7 @@ public class Modelo extends AbstractEntity{
     @Column(name = "nome", length = 25, nullable = false)
     private String nome;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_marca", nullable = false)
     private Marca marca;

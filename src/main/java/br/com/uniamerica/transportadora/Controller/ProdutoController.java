@@ -35,6 +35,13 @@ public class ProdutoController {
         return ResponseEntity.ok().body(this.produtoService.listAll());
     }
 
+    @GetMapping("/ativos")
+    public ResponseEntity<List<Produto>> findByProdutosAtivos(
+
+    ){
+        return ResponseEntity.ok().body(this.produtoService.findByProdutosAtivos());
+    }
+
     @GetMapping("/{idProduto}")
     public ResponseEntity<Produto> findById(
             @PathVariable("idProduto") Long idProduto

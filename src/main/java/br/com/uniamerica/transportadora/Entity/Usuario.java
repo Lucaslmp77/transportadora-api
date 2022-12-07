@@ -2,7 +2,6 @@ package br.com.uniamerica.transportadora.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -18,12 +17,10 @@ public class Usuario extends AbstractEntity{
     private BigDecimal percGanho;
 
     @Getter @Setter
-    @Length(min = 3, max = 25, message = "O login devera ter no minimo {min} caracteres e no maximo {max} caracteres")
     @Column(name = "login", length = 25, nullable = false, unique = true)
     private String login;
 
     @Getter @Setter
-    @Length(min = 3, max = 25, message = "A senha devera ter no minimo {min} caracteres e no maximo {max} caracteres")
     @Column(name = "senha", length = 25, nullable = false)
     private String senha;
 
@@ -54,6 +51,6 @@ public class Usuario extends AbstractEntity{
     private String endereco;
 
     @Getter @Setter
-    @Column(name = "observacao", length = 255, nullable = false)
+    @Column(name = "observacao", length = 255, nullable = true)
     private String observacao;
 }

@@ -15,7 +15,7 @@ public class Caminhao extends AbstractEntity {
     @Column(name = "placa", length = 25, nullable = false)
     private String placa;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_modelo", nullable = false)
     private Modelo modelo;
@@ -30,6 +30,6 @@ public class Caminhao extends AbstractEntity {
     private Cor cor;
 
     @Getter @Setter
-    @Column(name = "observacao", length = 255, nullable = false)
+    @Column(name = "observacao", length = 255, nullable = true)
     private String observacao;
 }

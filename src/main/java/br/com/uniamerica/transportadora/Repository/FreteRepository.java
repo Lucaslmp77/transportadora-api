@@ -12,9 +12,6 @@ import java.util.Optional;
 @Repository
 public interface FreteRepository extends JpaRepository<Frete, Long> {
 
-    @Query("SELECT fret FROM Frete fret WHERE fret.ativo = true")
-    List<Optional<Frete>> findByAtivo();
-
     @Query("SELECT fret FROM Frete fret WHERE fret.produto = :produto")
     List<Optional<Frete>>findByProduto(Produto produto);
 

@@ -35,6 +35,13 @@ public class CaminhaoController {
         return ResponseEntity.ok().body(this.caminhaoService.listAll());
     }
 
+    @GetMapping("/ativos")
+    public ResponseEntity<List<Caminhao>> findByCaminhoesAtivos(
+
+    ){
+        return ResponseEntity.ok().body(this.caminhaoService.findByCaminhoesAtivos());
+    }
+
     @GetMapping("/{idCaminhao}")
     public ResponseEntity<Caminhao> findById(
             @PathVariable("idCaminhao") Long idCaminhao

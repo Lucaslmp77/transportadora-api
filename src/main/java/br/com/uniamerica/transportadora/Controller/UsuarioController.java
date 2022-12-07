@@ -35,6 +35,13 @@ public class UsuarioController {
         return ResponseEntity.ok().body(this.usuarioService.listAll());
     }
 
+    @GetMapping("/ativos")
+    public ResponseEntity<List<Usuario>> findByMotoristasAtivos(
+
+    ){
+        return ResponseEntity.ok().body(this.usuarioService.findByMotoristasAtivos());
+    }
+
     @GetMapping("/{idUsuario}")
     public ResponseEntity<Usuario> findById(
             @PathVariable("idUsuario") Long idUsuario

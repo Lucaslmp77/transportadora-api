@@ -35,6 +35,13 @@ public class EstadoController {
         return ResponseEntity.ok().body(this.estadoService.listAll());
     }
 
+    @GetMapping("/ativos")
+    public ResponseEntity<List<Estado>> findByEstadosAtivos(
+
+    ){
+        return ResponseEntity.ok().body(this.estadoService.findByEstadosAtivos());
+    }
+
     @GetMapping("/{idEstado}")
     public ResponseEntity<Estado> findById(
             @PathVariable("idEstado") Long idEstado

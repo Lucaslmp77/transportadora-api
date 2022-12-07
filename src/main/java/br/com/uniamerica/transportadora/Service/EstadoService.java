@@ -1,6 +1,5 @@
 package br.com.uniamerica.transportadora.Service;
 
-import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Estado;
 import br.com.uniamerica.transportadora.Repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,10 @@ public class EstadoService {
 
     public List<Estado> listAll() {
         return this.estadoRepository.findAll();
+    }
+
+    public List<Estado> findByEstadosAtivos() {
+        return this.estadoRepository.findByEstadosAtivos();
     }
 
     public Estado findById(Long id) {

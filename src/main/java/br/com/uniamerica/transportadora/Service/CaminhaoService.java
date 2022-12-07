@@ -23,6 +23,10 @@ public class CaminhaoService {
         return this.caminhaoRepository.findAll();
     }
 
+    public List<Caminhao> findByCaminhoesAtivos() {
+        return this.caminhaoRepository.findByCaminhoesAtivos();
+    }
+
     public Caminhao findById(Long id) {
         return this.caminhaoRepository.findById(id).orElse(new Caminhao());
     }

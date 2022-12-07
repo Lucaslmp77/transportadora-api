@@ -19,7 +19,7 @@ public class Despesa extends AbstractEntity {
     @Column(name = "valor", nullable = false, precision = 5, scale = 3)
     private BigDecimal valor;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_motorista", nullable = false)
     private Usuario motorista;
@@ -33,7 +33,7 @@ public class Despesa extends AbstractEntity {
     @JoinColumn(name = "id_aprovador")
     private Usuario aprovador;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @Getter @Setter
     @JoinColumn(name = "id_frete", nullable = false)
     private Frete frete;

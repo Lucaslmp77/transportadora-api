@@ -2,7 +2,6 @@ package br.com.uniamerica.transportadora.Repository;
 
 import br.com.uniamerica.transportadora.Entity.Cidade;
 import br.com.uniamerica.transportadora.Entity.Estado;
-import br.com.uniamerica.transportadora.Entity.Modelo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +20,7 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long> {
     @Query("SELECT est FROM Estado est WHERE est.estado = :estado")
     List<Optional<Estado>> findByEstado(Estado estado);
 
-    @Query("FROM Cidade cidade WHERE cidade.estado.id = :idEstado")
+    @Query("FROM Cidade cidade WHERE cidade.estado.id = :idEstado and cidade.ativo = true")
     public List<Cidade> findByEstado(@Param("idEstado") Long idEstado);
 
     @Modifying

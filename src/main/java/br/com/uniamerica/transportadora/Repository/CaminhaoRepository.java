@@ -8,13 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface CaminhaoRepository extends JpaRepository<Caminhao, Long> {
 
-    @Query("SELECT cam FROM Caminhao cam WHERE cam.ativo = true")
-    List<Optional<Caminhao>> findByAtivo();
+    @Query("SELECT caminhao FROM Caminhao caminhao WHERE caminhao.ativo = true")
+    public List<Caminhao> findByCaminhoesAtivos();
 
     @Modifying
     @Query("UPDATE Caminhao caminhao SET caminhao.ativo = false WHERE caminhao.id = :idCaminhao")
