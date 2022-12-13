@@ -1,5 +1,6 @@
 package br.com.uniamerica.transportadora.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -76,10 +77,12 @@ public class Frete extends AbstractEntity {
     private BigDecimal precoTonelada;
 
     @Getter @Setter
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     @Column(name = "data_inicio", length = 25, nullable = true)
     private LocalDateTime dataInicio;
 
     @Getter @Setter
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     @Column(name = "data_fim", length = 25, nullable = true)
     private LocalDateTime dataFim;
 
