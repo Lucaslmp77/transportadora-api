@@ -77,7 +77,7 @@ public class Frete extends AbstractEntity {
     private BigDecimal precoTonelada;
 
     @Getter @Setter
-    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Column(name = "data_inicio", length = 25, nullable = true)
     private LocalDateTime dataInicio;
 
